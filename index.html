@@ -85,6 +85,30 @@
     .small{font-size:14px;color:var(--sub)}
     .audio-box{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
     audio{width:100%;max-width:360px;height:38px}
+    .qa-box{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+    .answer-toggle{
+      border:1px solid var(--blue);
+      background:#fff;
+      color:var(--blue);
+      border-radius:999px;
+      padding:8px 14px;
+      font-size:14px;
+      font-weight:700;
+      cursor:pointer;
+    }
+    .answer-toggle:hover{background:var(--blue-soft)}
+    .answer{
+      display:none;
+      margin-top:10px;
+      padding:12px 14px;
+      border:1px solid #cfe0f7;
+      border-radius:14px;
+      background:#f7fbff;
+      color:var(--ink);
+      font-size:15px;
+      line-height:1.7;
+    }
+    .answer.show{display:block}
     .footer{padding:8px 18px 30px;color:var(--sub);font-size:15px;line-height:1.7}
     code{font-family:Consolas,monospace;font-size:.95em}
     @media (max-width:860px){
@@ -226,26 +250,26 @@
       <div class="panel">
         <h2>주차별 미니 테스트</h2>
         <div class="grid2">
-          <div class="card blue"><span class="week-badge">1주차</span><p>がっこう 의 뜻은 무엇인가요?</p></div>
-          <div class="card mint"><span class="week-badge">2주차</span><p>パン___食べます. 빈칸에 들어갈 조사는 무엇인가요?</p></div>
-          <div class="card yellow"><span class="week-badge">3주차</span><p>行きます 의 뜻은 무엇인가요?</p></div>
-          <div class="card peach"><span class="week-badge">4주차</span><p>会議は三時からです. 에서 시간을 찾아보세요.</p></div>
-          <div class="card lav"><span class="week-badge">5주차</span><p>えき 의 뜻은 무엇인가요?</p></div>
-          <div class="card blue"><span class="week-badge">6주차</span><p>行きません 은 갑니다 / 가지 않습니다 중 어느 뜻인가요?</p></div>
-          <div class="card mint"><span class="week-badge">7주차</span><p>水をください. 의 뜻은 무엇인가요?</p></div>
-          <div class="card yellow"><span class="week-badge">8주차</span><p>金曜日は休みです. 에서 요일을 찾아보세요.</p></div>
-          <div class="card peach"><span class="week-badge">9주차</span><p>まだです. 는 완료 / 미완료 중 어느 쪽인가요?</p></div>
-          <div class="card lav"><span class="week-badge">10주차</span><p>駅で会います. 에서 장소를 나타내는 조사는 무엇인가요?</p></div>
+          <div class="card blue"><span class="week-badge">1주차</span><p>がっこう 의 뜻은 무엇인가요?</p><div class="qa-box"><button class="answer-toggle" type="button">정답 보기</button><div class="answer">정답: 학교</div></div></div>
+          <div class="card mint"><span class="week-badge">2주차</span><p>パン___食べます. 빈칸에 들어갈 조사는 무엇인가요?</p><div class="qa-box"><button class="answer-toggle" type="button">정답 보기</button><div class="answer">정답: を<br>해설: 먹는 대상 앞에는 보통 <code>を</code>를 씁니다.</div></div></div>
+          <div class="card yellow"><span class="week-badge">3주차</span><p>行きます 의 뜻은 무엇인가요?</p><div class="qa-box"><button class="answer-toggle" type="button">정답 보기</button><div class="answer">정답: 갑니다</div></div></div>
+          <div class="card peach"><span class="week-badge">4주차</span><p>会議は三時からです. 에서 시간을 찾아보세요.</p><div class="qa-box"><button class="answer-toggle" type="button">정답 보기</button><div class="answer">정답: 三時(3시)</div></div></div>
+          <div class="card lav"><span class="week-badge">5주차</span><p>えき 의 뜻은 무엇인가요?</p><div class="qa-box"><button class="answer-toggle" type="button">정답 보기</button><div class="answer">정답: 역</div></div></div>
+          <div class="card blue"><span class="week-badge">6주차</span><p>行きません 은 갑니다 / 가지 않습니다 중 어느 뜻인가요?</p><div class="qa-box"><button class="answer-toggle" type="button">정답 보기</button><div class="answer">정답: 가지 않습니다<br>해설: <code>ません</code>이 붙으면 부정입니다.</div></div></div>
+          <div class="card mint"><span class="week-badge">7주차</span><p>水をください. 의 뜻은 무엇인가요?</p><div class="qa-box"><button class="answer-toggle" type="button">정답 보기</button><div class="answer">정답: 물 주세요.</div></div></div>
+          <div class="card yellow"><span class="week-badge">8주차</span><p>金曜日は休みです. 에서 요일을 찾아보세요.</p><div class="qa-box"><button class="answer-toggle" type="button">정답 보기</button><div class="answer">정답: 金曜日(금요일)</div></div></div>
+          <div class="card peach"><span class="week-badge">9주차</span><p>まだです. 는 완료 / 미완료 중 어느 쪽인가요?</p><div class="qa-box"><button class="answer-toggle" type="button">정답 보기</button><div class="answer">정답: 미완료<br>해설: <code>まだ</code>는 아직, 아직 안 끝남의 느낌입니다.</div></div></div>
+          <div class="card lav"><span class="week-badge">10주차</span><p>駅で会います. 에서 장소를 나타내는 조사는 무엇인가요?</p><div class="qa-box"><button class="answer-toggle" type="button">정답 보기</button><div class="answer">정답: で<br>해설: 행동하는 장소에는 보통 <code>で</code>를 씁니다.</div></div></div>
         </div>
       </div>
 
       <div class="panel">
         <h2>기출형 예시 문제</h2>
         <div class="grid2">
-          <div class="card"><h3>조사 문제</h3><p>わたし___学生です。<br>パン___食べます。<br>学校___行きます。<br>図書館___勉強します。</p></div>
-          <div class="card"><h3>시간·동사 문제</h3><p>会議は九時___始まります。<br>きのう映画を___。<br>明日は会社へ___。<br>水を___。</p></div>
-          <div class="card"><h3>부정·안내 문제</h3><p>今日は行き___。<br>まだ___。<br>入口は___です。<br>こちらへ___ください。</p></div>
-          <div class="card"><h3>짧은 회화 문제</h3><p>A: 何時ですか。<br>B: 三時___。<br><br>A: どこですか。<br>B: 二階___。</p></div>
+          <div class="card"><h3>조사 문제</h3><p>わたし___学生です。<br>パン___食べます。<br>学校___行きます。<br>図書館___勉強します。</p><div class="qa-box"><button class="answer-toggle" type="button">정답 보기</button><div class="answer">정답: は / を / に / で</div></div></div>
+          <div class="card"><h3>시간·동사 문제</h3><p>会議は九時___始まります。<br>きのう映画を___。<br>明日は会社へ___。<br>水を___。</p><div class="qa-box"><button class="answer-toggle" type="button">정답 보기</button><div class="answer">예시 정답: から / 見ました / 行きません / ください</div></div></div>
+          <div class="card"><h3>부정·안내 문제</h3><p>今日は行き___。<br>まだ___。<br>入口は___です。<br>こちらへ___ください。</p><div class="qa-box"><button class="answer-toggle" type="button">정답 보기</button><div class="answer">예시 정답: ません / です / こちら / 来て<br>핵심: 부정, 안내, 위치 표현을 같이 보는 유형입니다.</div></div></div>
+          <div class="card"><h3>짧은 회화 문제</h3><p>A: 何時ですか。<br>B: 三時___。<br><br>A: どこですか。<br>B: 二階___。</p><div class="qa-box"><button class="answer-toggle" type="button">정답 보기</button><div class="answer">정답: です / です</div></div></div>
         </div>
       </div>
 
@@ -412,6 +436,10 @@
                 <source src="audio50/${no}.wav" type="audio/wav">
               </audio>
             </div>
+            <div class="qa-box">
+              <button class="answer-toggle" type="button">정답 보기</button>
+              <div class="answer">정답 확인 포인트: ${topic}<br>처음에는 문장 전체를 다 들으려고 하지 말고, 이 포인트 하나만 잡는 연습을 하면 됩니다.</div>
+            </div>
           </div>
         `;
       }).join('');
@@ -421,6 +449,13 @@
     renderKana('katakanaGrid', kanaRows.katakana);
     renderDaily();
     renderListening();
+    document.addEventListener('click', event => {
+      if (!event.target.classList.contains('answer-toggle')) return;
+      const answer = event.target.nextElementSibling;
+      const isOpen = answer.classList.contains('show');
+      answer.classList.toggle('show', !isOpen);
+      event.target.textContent = isOpen ? '정답 보기' : '정답 숨기기';
+    });
     activatePage(resolvePage());
   </script>
 </body>
