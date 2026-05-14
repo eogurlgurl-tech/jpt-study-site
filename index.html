@@ -6,227 +6,422 @@
   <title>JPT 10주 완성 웹페이지</title>
   <style>
     :root{
-      --bg:#f5f8fc;--surface:#fff;--ink:#193247;--sub:#5a6a79;--line:#d9e3eb;
-      --blue:#2f80ed;--blue-soft:#eaf4ff;--mint:#e9f7f1;--yellow:#fff5d8;--peach:#fdebdc;--lav:#f3efff;
-      --radius:22px;--shadow:0 12px 28px rgba(18,50,72,.08)
+      --bg:#f5f8fc;
+      --surface:#ffffff;
+      --ink:#193247;
+      --sub:#5a6a79;
+      --line:#d9e3eb;
+      --blue:#2f80ed;
+      --blue-soft:#eaf4ff;
+      --mint:#e9f7f1;
+      --yellow:#fff5d8;
+      --peach:#fdebdc;
+      --lav:#f3efff;
+      --radius:22px;
+      --shadow:0 12px 28px rgba(18,50,72,.08);
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:"Malgun Gothic",sans-serif;color:var(--ink);background:
-      radial-gradient(circle at top left, rgba(47,128,237,.14), transparent 28%),
-      linear-gradient(180deg,#fafdff 0%,var(--bg) 100%)}
-    .hero,.shell,.footer{max-width:1100px;margin:0 auto}
-    .hero{padding:28px 18px 18px}
+    body{
+      margin:0;
+      font-family:"Malgun Gothic",sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(47,128,237,.14), transparent 28%),
+        linear-gradient(180deg,#fafdff 0%,var(--bg) 100%);
+    }
+    .hero,.shell,.footer{max-width:1120px;margin:0 auto}
+    .hero{padding:28px 18px 16px}
     .eyebrow{margin:0 0 8px;color:var(--blue);font-size:14px;font-weight:700}
-    h1{margin:0;font-size:36px;line-height:1.2}
-    .lead{margin:12px 0 0;color:var(--sub);font-size:16px;line-height:1.65}
-    .shell{padding:10px 14px 42px}
-    .quick{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-    .quick a{text-decoration:none;text-align:center;background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:11px 8px;font-size:15px;font-weight:700}
-    .panel{background:var(--surface);border:1px solid rgba(217,227,235,.9);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:14px}
-    .panel h2{margin:0 0 14px;font-size:25px}
+    h1{margin:0;font-size:38px;line-height:1.2}
+    .lead{margin:12px 0 0;color:var(--sub);font-size:16px;line-height:1.7}
+    .shell{padding:8px 14px 44px}
+    .quick{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:18px}
+    .quick a{
+      text-decoration:none;text-align:center;background:#fff;color:var(--ink);
+      border:1px solid var(--line);border-radius:999px;padding:12px 8px;
+      font-size:15px;font-weight:700;transition:.2s ease;
+    }
+    .quick a.active,.quick a:hover{background:var(--blue);color:#fff;border-color:var(--blue)}
+    .page{display:none}
+    .page.active{display:block}
+    .page-note{
+      margin:0 0 16px;padding:14px 16px;border:1px solid var(--line);border-radius:18px;
+      background:rgba(255,255,255,.72);color:var(--sub);font-size:15px;line-height:1.7;
+    }
+    .panel{
+      background:var(--surface);border:1px solid rgba(217,227,235,.92);border-radius:var(--radius);
+      box-shadow:var(--shadow);padding:18px;margin-bottom:14px;
+    }
+    .panel h2{margin:0 0 14px;font-size:27px}
     .panel h3{margin:0 0 8px;font-size:21px}
     .card{border:1px solid var(--line);border-radius:18px;padding:16px;margin-bottom:10px;background:#fff}
-    .blue{background:var(--blue-soft)} .mint{background:var(--mint)} .yellow{background:var(--yellow)} .peach{background:var(--peach)} .lav{background:var(--lav)}
+    .blue{background:var(--blue-soft)}
+    .mint{background:var(--mint)}
+    .yellow{background:var(--yellow)}
+    .peach{background:var(--peach)}
+    .lav{background:var(--lav)}
     .card p,.card li,.panel p,.panel li{margin:0;font-size:16px;line-height:1.7}
-    .today{background:linear-gradient(135deg,var(--blue-soft),#fff);border:1px solid #dbe8f7;border-radius:18px;padding:18px}
-    .today .jp{font-size:29px;font-weight:700;line-height:1.35}
+    .today{
+      background:linear-gradient(135deg,var(--blue-soft),#fff);
+      border:1px solid #dbe8f7;border-radius:18px;padding:18px;
+    }
+    .today .jp{font-size:30px;font-weight:700;line-height:1.35}
     .meta{margin-top:10px;color:var(--sub)}
-    .example{margin-top:14px;padding:14px;background:rgba(255,255,255,.84);border:1px solid var(--line);border-radius:16px}
-    .chips,.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-    .chip{border:1px solid #d8e8ff;border-radius:18px;padding:14px;background:#ddecff}
-    .chip strong{display:block;font-size:22px;margin-bottom:4px}
-    .sub{color:var(--sub)}
-    .week-badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#ddecff;color:var(--blue);font-size:13px;font-weight:700;margin-bottom:8px}
-    .list{margin:0;padding-left:22px}
-    .list li{margin-bottom:8px}
+    .example{
+      margin-top:14px;padding:14px;background:rgba(255,255,255,.84);
+      border:1px solid var(--line);border-radius:16px;
+    }
+    .grid2,.grid3{display:grid;gap:10px}
+    .grid2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .week-badge{
+      display:inline-block;padding:6px 10px;border-radius:999px;background:#ddecff;color:var(--blue);
+      font-size:13px;font-weight:700;margin-bottom:8px;
+    }
+    .kana-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+    .kana-card{border:1px solid var(--line);border-radius:18px;padding:14px;background:#fff}
+    .kana-card strong{display:block;font-size:24px;margin-bottom:4px}
+    .kana-card span{display:block;font-size:15px;line-height:1.55;color:var(--sub)}
     .small{font-size:14px;color:var(--sub)}
     .audio-box{margin-top:10px;padding-top:10px;border-top:1px dashed var(--line)}
     audio{width:100%;max-width:360px;height:38px}
     .footer{padding:8px 18px 30px;color:var(--sub);font-size:15px;line-height:1.7}
     code{font-family:Consolas,monospace;font-size:.95em}
-    @media (max-width:760px){.grid2,.chips{grid-template-columns:1fr}.quick{grid-template-columns:repeat(2,1fr)}h1{font-size:32px}}
+    @media (max-width:860px){
+      .quick{grid-template-columns:repeat(3,1fr)}
+      .grid2,.grid3{grid-template-columns:1fr}
+      .kana-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      h1{font-size:32px}
+    }
   </style>
 </head>
 <body>
   <header class="hero">
     <p class="eyebrow">JPT 초보 전용</p>
     <h1>JPT 10주 완성 웹페이지</h1>
-    <p class="lead">아이폰에서도 바로 보이고, 링크로 공유하기 쉬운 정적 웹 구조입니다. 기본 문형, 단어, 듣기, 문제, 10주 로드맵, 주차별 미니 테스트, 일상 회화 50문장, 듣기 문장 50개까지 한 번에 정리했습니다.</p>
+    <p class="lead">세로로 계속 내려보는 자료집 구조 대신, 필요한 내용만 바로 들어가서 볼 수 있게 다시 정리한 버전입니다. 기초, 문자표, 단어, 듣기, 문제, 마무리를 나누어 두었습니다.</p>
   </header>
 
   <main class="shell">
     <nav class="quick">
-      <a href="#today">오늘의 표현</a>
-      <a href="#roadmap">10주 로드맵</a>
-      <a href="#basics">기본문형</a>
-      <a href="#vocab">필수단어</a>
-      <a href="#daily50">일상 회화 50</a>
-      <a href="#listening50">듣기 문장 50</a>
-      <a href="#mini">주차별 테스트</a>
-      <a href="#practice">기출형 문제</a>
-      <a href="#summary">시험 직전</a>
+      <a href="#home" data-page="home">홈</a>
+      <a href="#basics" data-page="basics">기초</a>
+      <a href="#kana" data-page="kana">문자표</a>
+      <a href="#vocab" data-page="vocab">단어·회화</a>
+      <a href="#listening" data-page="listening">듣기</a>
+      <a href="#practice" data-page="practice">문제·마무리</a>
     </nav>
 
-    <section id="today" class="panel">
-      <h2>오늘의 표현</h2>
-      <div class="today">
-        <div class="jp">もう一度お願いします。</div>
-        <div class="meta">
-          읽는 법: もう いちど おねがいします<br>
-          한글식 발음: 모- 이치도 오네가이시마스<br>
-          뜻: 한 번 더 부탁합니다.
+    <section class="page active" id="page-home">
+      <p class="page-note">처음 들어왔을 때 제일 먼저 보는 화면입니다. 오늘의 표현과 10주 흐름만 빠르게 보고 다음 페이지로 넘어가면 됩니다.</p>
+      <div class="panel">
+        <h2>오늘의 표현</h2>
+        <div class="today">
+          <div class="jp">もう一度お願いします。</div>
+          <div class="meta">
+            읽는 법: もう いちど おねがいします<br>
+            한글식 발음: 모- 이치도 오네가이시마스<br>
+            뜻: 한 번 더 부탁합니다.
+          </div>
+          <div class="example">
+            쓰는 상황: 상대방 말을 못 들었을 때, 다시 말해 달라고 할 때 자주 씁니다.
+            <div class="audio-box">
+              <audio controls preload="none">
+                <source src="audio50/34.wav" type="audio/wav">
+              </audio>
+            </div>
+          </div>
         </div>
-        <div class="example">
-          쓰는 상황: 상대방 말을 못 들었을 때, 다시 말해 달라고 할 때 자주 씁니다.
-          <div class="audio-box">
-            <audio controls preload="none">
-              <source src="audio/18_요청.wav" type="audio/wav">
-            </audio>
+      </div>
+
+      <div class="panel">
+        <h2>10주 전체 로드맵</h2>
+        <div class="grid2">
+          <div class="card blue"><span class="week-badge">1주차</span><h3>글자와 소리 익히기</h3><p>히라가나, 가타카나를 완벽히 외우기보다 자주 보이는 글자를 먼저 익힙니다.</p></div>
+          <div class="card mint"><span class="week-badge">2주차</span><h3>조사 붙이기</h3><p><code>は / を / に / で</code>를 실제 예문에 붙여보면서 문장 구조를 익힙니다.</p></div>
+          <div class="card yellow"><span class="week-badge">3주차</span><h3>기본 동사 20개</h3><p>갑니다, 먹습니다, 봅니다처럼 자주 나오는 동사를 문장째 익힙니다.</p></div>
+          <div class="card peach"><span class="week-badge">4주차</span><h3>숫자와 시간</h3><p>1시, 2시, 오늘, 내일, 어제처럼 점수로 이어지는 표현을 먼저 익힙니다.</p></div>
+          <div class="card lav"><span class="week-badge">5주차</span><h3>생활 단어 확장</h3><p>학교, 회사, 역, 전화, 예약, 회의 같은 생활 단어를 묶어서 봅니다.</p></div>
+          <div class="card blue"><span class="week-badge">6주차</span><h3>부정 표현</h3><p><code>ません</code>, <code>ない</code>, <code>まだ</code>처럼 뜻을 반대로 만드는 표현을 익힙니다.</p></div>
+          <div class="card mint"><span class="week-badge">7주차</span><h3>짧은 회화</h3><p>일상 문장을 통째로 외워서 바로 반응할 수 있게 만듭니다.</p></div>
+          <div class="card yellow"><span class="week-badge">8주차</span><h3>문제 패턴 연습</h3><p>조사, 시간, 부정, 장소처럼 자주 나오는 시험 유형만 집중합니다.</p></div>
+          <div class="card peach"><span class="week-badge">9주차</span><h3>오답 정리</h3><p>자꾸 틀리는 조사와 시간을 모아 짧게 복습합니다.</p></div>
+          <div class="card lav"><span class="week-badge">10주차</span><h3>실전 감각 만들기</h3><p>한 번에 오래 하기보다 짧게 자주 반복해 시험 감각을 만듭니다.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-basics">
+      <p class="page-note">문장 뼈대와 시험에서 바로 쓰이는 핵심 문형만 모았습니다. 완전 초보라면 이 페이지를 제일 자주 보면 됩니다.</p>
+      <div class="panel">
+        <h2>기본 문형</h2>
+        <div class="grid2">
+          <div class="card blue"><h3>これは本です。</h3><p>읽는 법: これは ほん です<br>한글식 발음: 코레와 혼 데스<br>뜻: 이것은 책입니다.</p></div>
+          <div class="card mint"><h3>学校に行きます。</h3><p>읽는 법: がっこう に いきます<br>한글식 발음: 각코- 니 이키마스<br>뜻: 학교에 갑니다.</p></div>
+          <div class="card yellow"><h3>水をください。</h3><p>읽는 법: みず を ください<br>한글식 발음: 미즈 오 쿠다사이<br>뜻: 물 주세요.</p></div>
+          <div class="card peach"><h3>明日は行きません。</h3><p>읽는 법: あした は いきません<br>한글식 발음: 아시타와 이키마센<br>뜻: 내일은 가지 않습니다.</p></div>
+          <div class="card lav"><h3>会議は三時からです。</h3><p>읽는 법: かいぎ は さんじ から です<br>한글식 발음: 카이기와 산지 카라 데스<br>뜻: 회의는 3시부터입니다.</p></div>
+          <div class="card blue"><h3>まだです。</h3><p>읽는 법: まだ です<br>한글식 발음: 마다 데스<br>뜻: 아직입니다.</p></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>자주 나오는 조사</h2>
+        <div class="grid3">
+          <div class="card blue"><h3>は</h3><p>주어 뒤에 많이 옵니다.<br>예: わたしは学生です。</p></div>
+          <div class="card mint"><h3>を</h3><p>먹는 것, 보는 것 앞에 옵니다.<br>예: パンを食べます。</p></div>
+          <div class="card yellow"><h3>に</h3><p>가는 곳, 시간 앞에 옵니다.<br>예: 学校に行きます。</p></div>
+          <div class="card peach"><h3>で</h3><p>행동하는 장소에 많이 씁니다.<br>예: 駅で会います。</p></div>
+          <div class="card lav"><h3>の</h3><p>소속, 연결 느낌입니다.<br>예: わたしの本です。</p></div>
+          <div class="card blue"><h3>と</h3><p>함께, 그리고 뜻으로 씁니다.<br>예: 友だちと行きます。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="page" id="page-kana">
+      <p class="page-note">히라가나와 가타카나를 까먹었을 때 바로 확인하는 공간입니다. 발음도 함께 넣어 두었습니다.</p>
+      <div class="panel">
+        <h2>히라가나 / 가타카나 한눈에 보기</h2>
+        <p class="small">자주 나오는 글자부터 익숙해지면 됩니다. 완벽 암기보다 자주 보면서 낯설지 않게 만드는 게 먼저입니다.</p>
+        <div class="grid2">
+          <div class="card blue">
+            <h3>히라가나</h3>
+            <div class="kana-grid" id="hiraganaGrid"></div>
+          </div>
+          <div class="card mint">
+            <h3>가타카나</h3>
+            <div class="kana-grid" id="katakanaGrid"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="roadmap" class="panel">
-      <h2>10주 전체 로드맵</h2>
-      <div class="grid2">
-        <div class="card blue"><span class="week-badge">1주차</span><h3>글자와 소리 익히기</h3><p>히라가나/가타카나를 완벽히 외우기보다 자주 나오는 글자와 소리에 익숙해지기</p></div>
-        <div class="card mint"><span class="week-badge">2주차</span><h3>조사 익히기</h3><p><code>は / を / に / で / の</code>를 실제 예문에 붙여 보기</p></div>
-        <div class="card yellow"><span class="week-badge">3주차</span><h3>기본 동사 ます형</h3><p>行きます, 食べます, 見ます, 聞きます 중심으로 귀와 눈에 익히기</p></div>
-        <div class="card peach"><span class="week-badge">4주차</span><h3>숫자와 시간</h3><p>1시~12시, 今日 / 明日 / 昨日, から / まで에 반응하기</p></div>
-        <div class="card lav"><span class="week-badge">5주차</span><h3>생활 단어 확장</h3><p>장소, 회사, 학교, 교통, 음식, 예약, 회의 관련 기본 단어 늘리기</p></div>
-        <div class="card blue"><span class="week-badge">6주차</span><h3>부정 표현</h3><p><code>ません</code>, <code>ない</code>, <code>まだ</code> 때문에 뜻이 바뀌는 문제 적응</p></div>
-        <div class="card mint"><span class="week-badge">7주차</span><h3>짧은 문장 암기</h3><p>일상 문장과 듣기 문장을 통으로 외우기 시작</p></div>
-        <div class="card yellow"><span class="week-badge">8주차</span><h3>기출형 문제 적응</h3><p>조사 빈칸, 동사 변화, 시간, 짧은 안내문 문제에 빠르게 반응하기</p></div>
-        <div class="card peach"><span class="week-badge">9주차</span><h3>오답 정리</h3><p>안 들리는 문장, 자꾸 틀리는 조사와 시간 표현만 집중 복습</p></div>
-        <div class="card lav"><span class="week-badge">10주차</span><h3>실전 마무리</h3><p>새로운 내용은 줄이고, 반복 중심으로 시험장 감각 만들기</p></div>
+    <section class="page" id="page-vocab">
+      <p class="page-note">단어와 일상 회화를 같이 묶었습니다. 단어를 본 뒤 바로 예문으로 연결하는 데 초점을 맞춘 화면입니다.</p>
+      <div class="panel">
+        <h2>필수 단어</h2>
+        <div class="grid3">
+          <div class="card blue"><h3>장소</h3><p>学校 학교<br>会社 회사<br>駅 역<br>店 가게<br>図書館 도서관<br>会議室 회의실</p></div>
+          <div class="card mint"><h3>시간</h3><p>今日 오늘<br>明日 내일<br>昨日 어제<br>一時 1시<br>三時 3시<br>時間 시간</p></div>
+          <div class="card yellow"><h3>행동</h3><p>行きます 갑니다<br>食べます 먹습니다<br>見ます 봅니다<br>聞きます 듣습니다<br>待ちます 기다립니다<br>話します 말합니다</p></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>일상 회화 50</h2>
+        <div class="grid2" id="dailyGrid"></div>
       </div>
     </section>
 
-    <section id="basics" class="panel">
-      <h2>기본 문형</h2>
-      <div class="grid2">
-        <div class="card blue"><h3>これは本です。</h3><p>읽는 법: これは ほん です<br>한글식 발음: 코레와 혼 데스<br>뜻: 이것은 책입니다.</p></div>
-        <div class="card mint"><h3>学校に行きます。</h3><p>읽는 법: がっこう に いきます<br>한글식 발음: 각코- 니 이키마스<br>뜻: 학교에 갑니다.</p></div>
-        <div class="card yellow"><h3>水をください。</h3><p>읽는 법: みず を ください<br>한글식 발음: 미즈 오 쿠다사이<br>뜻: 물 주세요.</p></div>
-        <div class="card peach"><h3>明日は行きません。</h3><p>읽는 법: あした は いきません<br>한글식 발음: 아시타 와 이키마센<br>뜻: 내일은 가지 않습니다.</p></div>
-        <div class="card lav"><h3>会議は三時からです。</h3><p>읽는 법: かいぎ は さんじ から です<br>한글식 발음: 카이기 와 산지 카라 데스<br>뜻: 회의는 3시부터입니다.</p></div>
-        <div class="card blue"><h3>まだです。</h3><p>읽는 법: まだ です<br>한글식 발음: 마다 데스<br>뜻: 아직입니다.</p></div>
+    <section class="page" id="page-listening">
+      <p class="page-note">듣기 문장 50개를 따로 떼어 두었습니다. 번호별로 바로 재생할 수 있게 정리했고, 집중 포인트를 같이 붙였습니다.</p>
+      <div class="panel">
+        <h2>듣기 문장 50</h2>
+        <div class="grid2" id="listeningGrid"></div>
       </div>
     </section>
 
-    <section class="panel">
-      <h2>자주 나오는 조사</h2>
-      <div class="chips">
-        <div class="chip"><strong>は</strong><span class="sub">은/는<br>주어 또는 주제</span></div>
-        <div class="chip"><strong>を</strong><span class="sub">을/를<br>행동의 대상</span></div>
-        <div class="chip"><strong>に</strong><span class="sub">에<br>시간, 도착점</span></div>
-        <div class="chip"><strong>で</strong><span class="sub">에서<br>행동하는 장소</span></div>
-        <div class="chip"><strong>の</strong><span class="sub">의<br>소속, 연결</span></div>
-        <div class="chip"><strong>と</strong><span class="sub">와/과<br>함께, 그리고</span></div>
+    <section class="page" id="page-practice">
+      <p class="page-note">주차별 점검, 기출형 연습, 시험 직전 요약을 이 페이지에 모았습니다. 실제 시험 전에 제일 자주 열게 되는 화면입니다.</p>
+      <div class="panel">
+        <h2>주차별 미니 테스트</h2>
+        <div class="grid2">
+          <div class="card blue"><span class="week-badge">1주차</span><p>がっこう 의 뜻은 무엇인가요?</p></div>
+          <div class="card mint"><span class="week-badge">2주차</span><p>パン___食べます. 빈칸에 들어갈 조사는 무엇인가요?</p></div>
+          <div class="card yellow"><span class="week-badge">3주차</span><p>行きます 의 뜻은 무엇인가요?</p></div>
+          <div class="card peach"><span class="week-badge">4주차</span><p>会議は三時からです. 에서 시간을 찾아보세요.</p></div>
+          <div class="card lav"><span class="week-badge">5주차</span><p>えき 의 뜻은 무엇인가요?</p></div>
+          <div class="card blue"><span class="week-badge">6주차</span><p>行きません 은 갑니다 / 가지 않습니다 중 어느 뜻인가요?</p></div>
+          <div class="card mint"><span class="week-badge">7주차</span><p>水をください. 의 뜻은 무엇인가요?</p></div>
+          <div class="card yellow"><span class="week-badge">8주차</span><p>金曜日は休みです. 에서 요일을 찾아보세요.</p></div>
+          <div class="card peach"><span class="week-badge">9주차</span><p>まだです. 는 완료 / 미완료 중 어느 쪽인가요?</p></div>
+          <div class="card lav"><span class="week-badge">10주차</span><p>駅で会います. 에서 장소를 나타내는 조사는 무엇인가요?</p></div>
+        </div>
       </div>
-    </section>
 
-    <section id="vocab" class="panel">
-      <h2>필수 단어</h2>
-      <div class="card"><h3>장소</h3><p>学校 | がっこう | 각코- | 학교<br>会社 | かいしゃ | 카이샤 | 회사<br>駅 | えき | 에키 | 역<br>店 | みせ | 미세 | 가게<br>銀行 | ぎんこう | 긴코- | 은행<br>図書館 | としょかん | 도시요칸 | 도서관</p></div>
-      <div class="card"><h3>시간</h3><p>今日 | きょう | 쿄- | 오늘<br>明日 | あした | 아시타 | 내일<br>昨日 | きのう | 키노- | 어제<br>朝 | あさ | 아사 | 아침<br>夜 | よる | 요루 | 밤<br>時間 | じかん | 지칸 | 시간</p></div>
-      <div class="card"><h3>행동</h3><p>行きます | いきます | 이키마스 | 갑니다<br>来ます | きます | 키마스 | 옵니다<br>見ます | みます | 미마스 | 봅니다<br>聞きます | ききます | 키키마스 | 듣습니다<br>食べます | たべます | 타베마스 | 먹습니다<br>飲みます | のみます | 노미마스 | 마십니다</p></div>
-      <div class="card"><h3>회사/일상</h3><p>会議 | かいぎ | 카이기 | 회의<br>予約 | よやく | 요야쿠 | 예약<br>電話 | でんわ | 덴와 | 전화<br>担当者 | たんとうしゃ | 탄토-샤 | 담당자<br>入口 | いりぐち | 이리구치 | 입구<br>休み | やすみ | 야스미 | 휴일</p></div>
-    </section>
-
-    <section id="daily50" class="panel">
-      <h2>일상 회화 50문장</h2>
-      <p class="small">짧은 문장은 통으로 외우는 것이 좋습니다. 한자가 없는 표현은 한글식 발음 위주로, 한자가 있는 표현은 읽는 법도 같이 적었습니다.</p>
-      <div class="grid2">
-        <div class="card blue"><h3>인사/기본 1~10</h3><p>1. おはようございます。 / 오하요- 고자이마스 / 아침 인사<br>2. こんにちは。 / 콘니치와 / 낮 인사<br>3. こんばんは。 / 콘방와 / 저녁 인사<br>4. ありがとうございます。 / 아리가토- 고자이마스 / 감사할 때<br>5. すみません。 / 스미마센 / 부를 때, 사과할 때<br>6. はい。 / 하이 / 네<br>7. いいえ。 / 이이에 / 아니요<br>8. お願いします。 / おねがいします / 오네가이시마스 / 부탁할 때<br>9. どうぞ。 / 도-조 / 권할 때<br>10. 大丈夫です。 / だいじょうぶ です / 다이죠-부 데스 / 괜찮다고 할 때</p></div>
-        <div class="card mint"><h3>질문/확인 11~20</h3><p>11. 何時ですか。 / なんじ ですか / 난지 데스카 / 시간 물을 때<br>12. これは何ですか。 / なん ですか / 코레와 난 데스카 / 사물 물을 때<br>13. お名前は何ですか。 / おなまえ は なん ですか / 오나마에와 난 데스카 / 이름 물을 때<br>14. どこですか。 / 도코 데스카 / 장소 물을 때<br>15. いくらですか。 / 이쿠라 데스카 / 가격 물을 때<br>16. もう一度お願いします。 / もう いちど おねがいします / 모- 이치도 오네가이시마스 / 다시 말해 달라 할 때<br>17. わかりました。 / 와카리마시타 / 이해했을 때<br>18. わかりません。 / 와카리마센 / 모르겠을 때<br>19. だれですか。 / 다레 데스카 / 사람 물을 때<br>20. いつですか。 / 이츠 데스카 / 날짜나 시간 물을 때</p></div>
-        <div class="card yellow"><h3>이동/장소 21~30</h3><p>21. 学校に行きます。 / がっこう に いきます / 각코- 니 이키마스 / 학교 갈 때<br>22. 会社へ行きます。 / かいしゃ へ いきます / 카이샤 에 이키마스 / 회사 갈 때<br>23. 駅で会います。 / えき で あいます / 에키 데 아이마스 / 역에서 만날 때<br>24. ここです。 / 코코 데스 / 여기라고 할 때<br>25. そこです。 / 소코 데스 / 거기라고 할 때<br>26. あそこです。 / 아소코 데스 / 저기라고 할 때<br>27. 図書館で勉強します。 / としょかん で べんきょう します / 도시요칸 데 벤쿄- 시마스 / 도서관에서 공부할 때<br>28. 右です。 / みぎ です / 미기 데스 / 오른쪽 안내<br>29. 左です。 / ひだり です / 히다리 데스 / 왼쪽 안내<br>30. 入口はこちらです。 / いりぐち は こちら です / 이리구치 와 코치라 데스 / 입구 안내</p></div>
-        <div class="card peach"><h3>식당/주문 31~40</h3><p>31. 水をください。 / みず を ください / 미즈 오 쿠다사이 / 물 부탁할 때<br>32. コーヒーをください。 / 코-히- 오 쿠다사이 / 커피 주문<br>33. これをください。 / 코레 오 쿠다사이 / 이것 주세요<br>34. 一つください。 / ひとつ ください / 히토츠 쿠다사이 / 하나 주세요<br>35. おいしいです。 / 오이시이 데스 / 맛있다고 할 때<br>36. まだです。 / 마다 데스 / 아직이라고 할 때<br>37. もういいです。 / 모- 이이 데스 / 충분하다고 할 때<br>38. 大丈夫です。 / だいじょうぶ です / 다이죠-부 데스 / 괜찮다고 할 때<br>39. 予約があります。 / よやく が あります / 요야쿠 가 아리마스 / 예약 있다고 할 때<br>40. お会計お願いします。 / おかいけい おねがいします / 오카이케이 오네가이시마스 / 계산 요청</p></div>
-        <div class="card lav"><h3>회사/업무 41~50</h3><p>41. 会議は三時からです。 / かいぎ は さんじ から です / 카이기 와 산지 카라 데스 / 회의 시간 말할 때<br>42. 会議室で待ちます。 / かいぎしつ で まちます / 카이기시츠 데 마치마스 / 회의실에서 기다릴 때<br>43. 担当者はいますか。 / たんとうしゃ は いますか / 탄토-샤 와 이마스카 / 담당자 확인<br>44. ただ今、席を外しています。 / ただいま、せき を はずして います / 타다이마 세키 오 하즈시테 이마스 / 자리 비웠다고 할 때<br>45. 電話します。 / でんわ します / 덴와 시마스 / 전화할 때<br>46. メールを送ります。 / おくります / 메-루 오 오쿠리마스 / 메일 보낼 때<br>47. 明日は休みです。 / あした は やすみ です / 아시타 와 야스미 데스 / 휴일 말할 때<br>48. 今日中にします。 / きょうじゅう に します / 쿄-쥬- 니 시마스 / 오늘 안에 하겠다고 할 때<br>49. 少々お待ちください。 / しょうしょう おまち ください / 쇼-쇼- 오마치 쿠다사이 / 잠시 기다려 달라고 할 때<br>50. よろしくお願いします。 / よろしく おねがいします / 요로시쿠 오네가이시마스 / 마무리 인사</p></div>
+      <div class="panel">
+        <h2>기출형 예시 문제</h2>
+        <div class="grid2">
+          <div class="card"><h3>조사 문제</h3><p>わたし___学生です。<br>パン___食べます。<br>学校___行きます。<br>図書館___勉強します。</p></div>
+          <div class="card"><h3>시간·동사 문제</h3><p>会議は九時___始まります。<br>きのう映画を___。<br>明日は会社へ___。<br>水を___。</p></div>
+          <div class="card"><h3>부정·안내 문제</h3><p>今日は行き___。<br>まだ___。<br>入口は___です。<br>こちらへ___ください。</p></div>
+          <div class="card"><h3>짧은 회화 문제</h3><p>A: 何時ですか。<br>B: 三時___。<br><br>A: どこですか。<br>B: 二階___。</p></div>
+        </div>
       </div>
-    </section>
 
-    <section id="listening50" class="panel">
-      <h2>듣기 문장 50개</h2>
-      <p class="small">대표 문장 5개는 아래에서 바로 재생할 수 있습니다. 나머지 문장은 텍스트 중심으로 먼저 익히고, 음성은 계속 추가하면 됩니다.</p>
-      <div class="grid2">
-        <div class="card blue"><h3>대표 듣기 1</h3><p>会議は三時からです。<br>읽는 법: かいぎ は さんじ から です<br>발음: 카이기 와 산지 카라 데스<br>뜻: 회의는 3시부터입니다.</p><div class="audio-box"><audio controls preload="none"><source src="audio/05_시간.wav" type="audio/wav"></audio></div></div>
-        <div class="card mint"><h3>대표 듣기 2</h3><p>明日は行きません。<br>읽는 법: あした は いきません<br>발음: 아시타 와 이키마센<br>뜻: 내일은 가지 않습니다.</p><div class="audio-box"><audio controls preload="none"><source src="audio/11_부정.wav" type="audio/wav"></audio></div></div>
-        <div class="card yellow"><h3>대표 듣기 3</h3><p>入口はこちらです。<br>읽는 법: いりぐち は こちら です<br>발음: 이리구치 와 코치라 데스<br>뜻: 입구는 이쪽입니다.</p><div class="audio-box"><audio controls preload="none"><source src="audio/16_안내.wav" type="audio/wav"></audio></div></div>
-        <div class="card peach"><h3>대표 듣기 4</h3><p>コーヒーを一つください。<br>읽는 법: コーヒー を ひとつ ください<br>발음: 코-히- 오 히토츠 쿠다사이<br>뜻: 커피 하나 주세요.</p><div class="audio-box"><audio controls preload="none"><source src="audio/08_주문.wav" type="audio/wav"></audio></div></div>
-        <div class="card lav"><h3>대표 듣기 5</h3><p>ただ今、担当者は席を外しています。<br>읽는 법: ただいま、たんとうしゃ は せき を はずして います<br>발음: 타다이마, 탄토-샤 와 세키 오 하즈시테 이마스<br>뜻: 현재 담당자는 자리를 비우고 있습니다.</p><div class="audio-box"><audio controls preload="none"><source src="audio/17_회사 표현.wav" type="audio/wav"></audio></div></div>
-      </div>
-      <div class="card"><h3>듣기 문장 1~10</h3><p>1. 会議は三時からです。 / 카이기 와 산지 카라 데스<br>2. 店は十時までです。 / 미세 와 쥬-지 마데 데스<br>3. 今、何時ですか。 / 이마 난지 데스카<br>4. 明日は午前九時です。 / 아시타 와 고젠 쿠지 데스<br>5. 電車は一時です。 / 덴샤 와 이치지 데스<br>6. 集合は八時です。 / 슈-고- 와 하지 데스<br>7. 授業は二時に終わります。 / 쥬교- 와 니지 니 오와리마스<br>8. 休みは日曜日です。 / 야스미 와 니치요-비 데스<br>9. 会議は五分後です。 / 카이기 와 고훈고 데스<br>10. 明後日は木曜日です。 / 아삿테 와 모쿠요-비 데스</p></div>
-      <div class="card"><h3>듣기 문장 11~20</h3><p>11. 学校に行きます。 / 각코- 니 이키마스<br>12. 会社へ行きます。 / 카이샤 에 이키마스<br>13. 銀行に行きます。 / 긴코- 니 이키마스<br>14. 駅で会います。 / 에키 데 아이마스<br>15. 図書館で勉強します。 / 도시요칸 데 벤쿄- 시마스<br>16. 右へ行ってください。 / 미기에 잇테 쿠다사이<br>17. 左です。 / 히다리 데스<br>18. 入口はこちらです。 / 이리구치 와 코치라 데스<br>19. 二階です。 / 니카이 데스<br>20. そこにあります。 / 소코 니 아리마스</p></div>
-      <div class="card"><h3>듣기 문장 21~30</h3><p>21. 明日は行きません。 / 아시타 와 이키마센<br>22. 今日は来ません。 / 쿄- 와 키마센<br>23. まだです。 / 마다 데스<br>24. まだ終わりません。 / 마다 오와리마센<br>25. わかりません。 / 와카리마센<br>26. できません。 / 데키마센<br>27. 電車が遅れています。 / 덴샤 가 오쿠레테 이마스<br>28. 担当者は不在です。 / 탄토-샤 와 후자이 데스<br>29. 今日は休みではありません。 / 쿄- 와 야스미 데와 아리마센<br>30. 今は忙しいです。 / 이마 와 이소가시이 데스</p></div>
-      <div class="card"><h3>듣기 문장 31~40</h3><p>31. 水をください。 / 미즈 오 쿠다사이<br>32. コーヒーを一つください。 / 코-히- 오 히토츠 쿠다사이<br>33. これをお願いします。 / 코레 오 오네가이시마스<br>34. もう一度お願いします。 / 모- 이치도 오네가이시마스<br>35. 少々お待ちください。 / 쇼-쇼- 오마치 쿠다사이<br>36. こちらに書いてください。 / 코치라 니 카이테 쿠다사이<br>37. 座ってください。 / 스왓테 쿠다사이<br>38. 見せてください。 / 미세테 쿠다사이<br>39. 聞いてください。 / 키이테 쿠다사이<br>40. 予約を確認します。 / 요야쿠 오 카쿠닌 시마스</p></div>
-      <div class="card"><h3>듣기 문장 41~50</h3><p>41. 会議室でお待ちください。 / 카이기시츠 데 오마치 쿠다사이<br>42. ただ今、担当者は席を外しています。 / 타다이마 탄토-샤 와 세키 오 하즈시테 이마스<br>43. 電話番号をお願いします。 / 덴와방고- 오 오네가이시마스<br>44. メールを送ります。 / 메-루 오 오쿠리마스<br>45. 資料は机の上です。 / 시료- 와 츠쿠에 노 우에 데스<br>46. 会議は明日です。 / 카이기 와 아시타 데스<br>47. 午後から始まります。 / 고고 카라 하지마리마스<br>48. 本日は休業します。 / 혼지츠 와 큐-교- 시마스<br>49. こちらで少々お待ちください。 / 코치라 데 쇼-쇼- 오마치 쿠다사이<br>50. ご協力ありがとうございます。 / 고쿄-료쿠 아리가토- 고자이마스</p></div>
-    </section>
-
-    <section class="panel">
-      <h2>웹에서 바로 듣기 18개</h2>
-      <p class="small">현재 실제 음성 파일이 있는 문장들입니다. 휴대폰에서 바로 눌러 들을 수 있습니다.</p>
-      <div class="grid2">
-        <div class="card blue"><h3>おはようございます。</h3><p>오하요- 고자이마스 / 아침 인사</p><div class="audio-box"><audio controls preload="none"><source src="audio/01_기본 인사.wav" type="audio/wav"></audio></div></div>
-        <div class="card mint"><h3>ありがとうございます。</h3><p>아리가토- 고자이마스 / 감사합니다</p><div class="audio-box"><audio controls preload="none"><source src="audio/02_기본 인사.wav" type="audio/wav"></audio></div></div>
-        <div class="card yellow"><h3>学校に行きます。</h3><p>각코- 니 이키마스 / 학교에 갑니다</p><div class="audio-box"><audio controls preload="none"><source src="audio/03_장소-이동.wav" type="audio/wav"></audio></div></div>
-        <div class="card peach"><h3>図書館で勉強します。</h3><p>도쇼칸 데 벤쿄- 시마스 / 도서관에서 공부합니다</p><div class="audio-box"><audio controls preload="none"><source src="audio/04_장소-행동.wav" type="audio/wav"></audio></div></div>
-        <div class="card lav"><h3>会議は三時からです。</h3><p>카이기 와 산지 카라 데스 / 회의는 3시부터입니다</p><div class="audio-box"><audio controls preload="none"><source src="audio/05_시간.wav" type="audio/wav"></audio></div></div>
-        <div class="card blue"><h3>店は十時までです。</h3><p>미세 와 쥬-지 마데 데스 / 가게는 10시까지입니다</p><div class="audio-box"><audio controls preload="none"><source src="audio/06_시간.wav" type="audio/wav"></audio></div></div>
-        <div class="card mint"><h3>水をください。</h3><p>미즈 오 쿠다사이 / 물 주세요</p><div class="audio-box"><audio controls preload="none"><source src="audio/07_요청.wav" type="audio/wav"></audio></div></div>
-        <div class="card yellow"><h3>コーヒーを一つください。</h3><p>코-히- 오 히토츠 쿠다사이 / 커피 하나 주세요</p><div class="audio-box"><audio controls preload="none"><source src="audio/08_주문.wav" type="audio/wav"></audio></div></div>
-        <div class="card peach"><h3>今、何時ですか。</h3><p>이마 난지 데스카 / 지금 몇 시입니까?</p><div class="audio-box"><audio controls preload="none"><source src="audio/09_질문.wav" type="audio/wav"></audio></div></div>
-        <div class="card lav"><h3>お名前は何ですか。</h3><p>오나마에 와 난 데스카 / 성함이 무엇입니까?</p><div class="audio-box"><audio controls preload="none"><source src="audio/10_질문.wav" type="audio/wav"></audio></div></div>
-        <div class="card blue"><h3>明日は行きません。</h3><p>아시타 와 이키마센 / 내일은 가지 않습니다</p><div class="audio-box"><audio controls preload="none"><source src="audio/11_부정.wav" type="audio/wav"></audio></div></div>
-        <div class="card mint"><h3>今日は会社に来ません。</h3><p>쿄- 와 카이샤 니 키마센 / 오늘은 회사에 오지 않습니다</p><div class="audio-box"><audio controls preload="none"><source src="audio/12_부정.wav" type="audio/wav"></audio></div></div>
-        <div class="card yellow"><h3>まだです。</h3><p>마다 데스 / 아직입니다</p><div class="audio-box"><audio controls preload="none"><source src="audio/13_상태.wav" type="audio/wav"></audio></div></div>
-        <div class="card peach"><h3>電車が遅れています。</h3><p>덴샤 가 오쿠레테 이마스 / 전철이 지연되고 있습니다</p><div class="audio-box"><audio controls preload="none"><source src="audio/14_상태.wav" type="audio/wav"></audio></div></div>
-        <div class="card lav"><h3>会議室でお待ちください。</h3><p>카이기시츠 데 오마치 쿠다사이 / 회의실에서 기다려 주세요</p><div class="audio-box"><audio controls preload="none"><source src="audio/15_안내.wav" type="audio/wav"></audio></div></div>
-        <div class="card blue"><h3>入口はこちらです。</h3><p>이리구치 와 코치라 데스 / 입구는 이쪽입니다</p><div class="audio-box"><audio controls preload="none"><source src="audio/16_안내.wav" type="audio/wav"></audio></div></div>
-        <div class="card mint"><h3>ただ今、担当者は席を外しています。</h3><p>타다이마 탄토-샤 와 세키 오 하즈시테 이마스 / 현재 담당자는 자리를 비우고 있습니다</p><div class="audio-box"><audio controls preload="none"><source src="audio/17_회사 표현.wav" type="audio/wav"></audio></div></div>
-        <div class="card yellow"><h3>もう一度お願いします。</h3><p>모- 이치도 오네가이시마스 / 한 번 더 부탁합니다</p><div class="audio-box"><audio controls preload="none"><source src="audio/18_요청.wav" type="audio/wav"></audio></div></div>
-      </div>
-    </section>
-
-    <section id="mini" class="panel">
-      <h2>주차별 미니 테스트</h2>
-      <div class="grid2">
-        <div class="card blue"><span class="week-badge">1주차 테스트</span><p>がっこう 의 뜻은? → 학교</p></div>
-        <div class="card mint"><span class="week-badge">2주차 테스트</span><p>パン___食べます 의 정답은? → を</p></div>
-        <div class="card yellow"><span class="week-badge">3주차 테스트</span><p>行きます 의 뜻은? → 갑니다</p></div>
-        <div class="card peach"><span class="week-badge">4주차 테스트</span><p>三時からです 의 뜻은? → 3시부터입니다</p></div>
-        <div class="card lav"><span class="week-badge">5주차 테스트</span><p>駅 의 읽는 법은? → えき</p></div>
-        <div class="card blue"><span class="week-badge">6주차 테스트</span><p>行きません 의 뜻은? → 가지 않습니다</p></div>
-        <div class="card mint"><span class="week-badge">7주차 테스트</span><p>水をください 의 뜻은? → 물 주세요</p></div>
-        <div class="card yellow"><span class="week-badge">8주차 테스트</span><p>本日、休業します 의 뜻은? → 금일 휴업합니다</p></div>
-        <div class="card peach"><span class="week-badge">9주차 테스트</span><p>まだです 는 완료인가, 미완료인가? → 미완료</p></div>
-        <div class="card lav"><span class="week-badge">10주차 테스트</span><p>会議室で待ちます 의 핵심 조사와 의미는? → で, 장소에서</p></div>
-      </div>
-    </section>
-
-    <section id="practice" class="panel">
-      <h2>기출형 예시 문제</h2>
-      <div class="card"><h3>조사 문제</h3><p>わたし___学生です。 → は<br>パン___食べます。 → を<br>学校___行きます。 → に<br>図書館___勉強します。 → で<br>わたし___名前はキムです。 → の</p></div>
-      <div class="card"><h3>시간/동사 문제</h3><p>会議は9時___始まります。 → から<br>店は10時___です。 → まで<br>きのう、映画を___。 → 見ました<br>あした、会社へ___。 → 行きます</p></div>
-      <div class="card"><h3>부정/안내문 문제</h3><p>今日は学校に___。 → 行きません<br>まだ宿題は___。 → できません<br>本日、休業します。 → 금일 휴업<br>入口はこちらです。 → 입구는 이쪽</p></div>
-      <div class="card"><h3>회화형 문제</h3><p>A: 何時ですか。 B: 2時___。 → です<br>A: 明日、来ますか。 B: いいえ、___。 → 来ません<br>A: これは何ですか。 B: ___本です。 → これは</p></div>
-    </section>
-
-    <section id="summary" class="panel">
-      <h2>시험 직전 요약</h2>
-      <div class="grid2">
-        <div class="card mint"><h3>꼭 구분할 것</h3><p>は = 은/는<br>を = 을/를<br>に = 에<br>で = 에서<br>の = 의</p></div>
-        <div class="card yellow"><h3>꼭 외울 끝말</h3><p>です = 입니다<br>ます = 합니다<br>ました = 했습니다<br>ません = 하지 않습니다</p></div>
-        <div class="card peach"><h3>자주 나오는 문장</h3><p>学校に行きます。<br>水をください。<br>会議は三時からです。<br>明日は行きません。<br>まだです。</p></div>
-        <div class="card lav"><h3>실전 기억 포인트</h3><p>숫자, 장소, 부정 표현부터 듣기<br>긴 문제보다 쉬운 문제를 안 틀리기<br>모르면 오래 끌지 않기</p></div>
+      <div class="panel">
+        <h2>시험 직전 요약</h2>
+        <div class="grid2">
+          <div class="card mint"><h3>조사 빠르게 보기</h3><p>は = 은/는<br>を = 을/를<br>に = 에, 시간<br>で = 에서<br>と = 와/과</p></div>
+          <div class="card yellow"><h3>꼭 기억할 표현</h3><p>です = 입니다<br>ます = 합니다<br>ありません = 없습니다<br>行きません = 가지 않습니다</p></div>
+          <div class="card peach"><h3>자주 나오는 문장</h3><p>学校に行きます。<br>水をください。<br>会議は三時からです。<br>明日は行きません。<br>まだです。</p></div>
+          <div class="card lav"><h3>실전 체크</h3><p>숫자, 시간, 장소, 부정을 먼저 잡기<br>긴 문제보다 쉬운 문제 먼저 맞히기<br>모르면 오래 끌지 않기</p></div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <p>돋보기: <strong>Windows 키 + +</strong></p>
-    <p>대표 문장 음성 5개를 먼저 붙여두었습니다. 나머지 음성도 같은 방식으로 계속 확장할 수 있습니다.</p>
+    <p>지금 버전은 페이지별로 나눠서 보기 쉽게 다시 정리한 버전입니다. GitHub Pages에도 반영하려면 이 파일만 다시 올리면 됩니다.</p>
   </footer>
+
+  <script>
+    const kanaRows = {
+      hiragana: [
+        ['あ','a','아'],['い','i','이'],['う','u','우'],['え','e','에'],['お','o','오'],
+        ['か','ka','카'],['き','ki','키'],['く','ku','쿠'],['け','ke','케'],['こ','ko','코'],
+        ['さ','sa','사'],['し','shi','시'],['す','su','스'],['せ','se','세'],['そ','so','소'],
+        ['た','ta','타'],['ち','chi','치'],['つ','tsu','츠'],['て','te','테'],['と','to','토'],
+        ['な','na','나'],['に','ni','니'],['ぬ','nu','누'],['ね','ne','네'],['の','no','노'],
+        ['は','ha','하'],['ひ','hi','히'],['ふ','fu','후'],['へ','he','헤'],['ほ','ho','호'],
+        ['ま','ma','마'],['み','mi','미'],['む','mu','무'],['め','me','메'],['も','mo','모'],
+        ['や','ya','야'],['ゆ','yu','유'],['よ','yo','요'],['ら','ra','라'],['り','ri','리'],
+        ['る','ru','루'],['れ','re','레'],['ろ','ro','로'],['わ','wa','와'],['を','o','오'],['ん','n','응']
+      ],
+      katakana: [
+        ['ア','a','아'],['イ','i','이'],['ウ','u','우'],['エ','e','에'],['オ','o','오'],
+        ['カ','ka','카'],['キ','ki','키'],['ク','ku','쿠'],['ケ','ke','케'],['コ','ko','코'],
+        ['サ','sa','사'],['シ','shi','시'],['ス','su','스'],['セ','se','세'],['ソ','so','소'],
+        ['タ','ta','타'],['チ','chi','치'],['ツ','tsu','츠'],['テ','te','테'],['ト','to','토'],
+        ['ナ','na','나'],['ニ','ni','니'],['ヌ','nu','누'],['ネ','ne','네'],['ノ','no','노'],
+        ['ハ','ha','하'],['ヒ','hi','히'],['フ','fu','후'],['ヘ','he','헤'],['ホ','ho','호'],
+        ['マ','ma','마'],['ミ','mi','미'],['ム','mu','무'],['メ','me','메'],['モ','mo','모'],
+        ['ヤ','ya','야'],['ユ','yu','유'],['ヨ','yo','요'],['ラ','ra','라'],['リ','ri','리'],
+        ['ル','ru','루'],['レ','re','레'],['ロ','ro','로'],['ワ','wa','와'],['ヲ','o','오'],['ン','n','응']
+      ]
+    };
+
+    const dailySentences = [
+      ['おはようございます。','오하요- 고자이마스','좋은 아침입니다.'],
+      ['こんにちは。','콘니치와','안녕하세요.'],
+      ['こんばんは。','곤방와','안녕하세요. 저녁 인사입니다.'],
+      ['ありがとうございます。','아리가토- 고자이마스','감사합니다.'],
+      ['すみません。','스미마센','죄송합니다 / 실례합니다.'],
+      ['はい。','하이','네.'],
+      ['いいえ。','이이에','아니요.'],
+      ['もう一度お願いします。','모- 이치도 오네가이시마스','한 번 더 부탁합니다.'],
+      ['大丈夫です。','다이죠-부 데스','괜찮습니다.'],
+      ['分かりました。','와카리마시타','알겠습니다.'],
+      ['何時ですか。','난지 데스카','몇 시입니까?'],
+      ['これは何ですか。','코레와 난데스카','이것은 무엇입니까?'],
+      ['お名前は何ですか。','오나마에와 난데스카','성함이 어떻게 되십니까?'],
+      ['どこですか。','도코 데스카','어디입니까?'],
+      ['いくらですか。','이쿠라 데스카','얼마입니까?'],
+      ['もう少しゆっくりお願いします。','모- 스코시 윳쿠리 오네가이시마스','조금 더 천천히 부탁합니다.'],
+      ['分かりません。','와카리마센','모르겠습니다.'],
+      ['大丈夫じゃありません。','다이죠-부 자 아리마센','괜찮지 않습니다.'],
+      ['トイレはどこですか。','토이레와 도코 데스카','화장실은 어디입니까?'],
+      ['今日は休みです。','쿄-와 야스미 데스','오늘은 휴일입니다.'],
+      ['明日は会社へ行きません。','아시타와 카이샤에 이키마센','내일은 회사에 가지 않습니다.'],
+      ['今日は時間がありません。','쿄-와 지칸가 아리마센','오늘은 시간이 없습니다.'],
+      ['まだです。','마다 데스','아직입니다.'],
+      ['まだ始まりません。','마다 하지마리마센','아직 시작하지 않습니다.'],
+      ['できません。','데키마센','할 수 없습니다.'],
+      ['電車が遅れています。','덴샤가 오쿠레테이마스','전철이 늦고 있습니다.'],
+      ['ホテルは満室です。','호테루와 만시츠 데스','호텔은 만실입니다.'],
+      ['今日は休みではありません。','쿄-와 야스미 데와 아리마센','오늘은 휴일이 아닙니다.'],
+      ['今は紹介できません。','이마와 쇼-카이 데키마센','지금은 소개할 수 없습니다.'],
+      ['今は対応できません。','이마와 타이오- 데키마센','지금은 대응할 수 없습니다.'],
+      ['水をください。','미즈 오 쿠다사이','물 주세요.'],
+      ['コーヒーを一つください。','코-히- 오 히토츠 쿠다사이','커피 한 잔 주세요.'],
+      ['これは大丈夫です。','코레와 다이죠-부 데스','이것은 괜찮습니다.'],
+      ['少し待ってください。','스코시 맛테 쿠다사이','잠시 기다려 주세요.'],
+      ['ここに書いてください。','코코니 카이테 쿠다사이','여기에 써 주세요.'],
+      ['座ってください。','스왓테 쿠다사이','앉아 주세요.'],
+      ['見せてください。','미세테 쿠다사이','보여 주세요.'],
+      ['聞いてください。','키이테 쿠다사이','들어 주세요.'],
+      ['予約を確認します。','요야쿠 오 카쿠닌시마스','예약을 확인합니다.'],
+      ['会議室で待ってください。','카이기시츠데 맛테 쿠다사이','회의실에서 기다려 주세요.'],
+      ['ただ今、担当者は席を外しています。','타다이마 탄토-샤와 세키오 하즈시테이마스','현재 담당자는 자리를 비우고 있습니다.'],
+      ['電話番号を確認します。','덴와방고- 오 카쿠닌시마스','전화번호를 확인합니다.'],
+      ['メールを送りました。','메-루 오 오쿠리마시타','메일을 보냈습니다.'],
+      ['資料は机の上にあります。','시료-와 츠쿠에노 우에니 아리마스','자료는 책상 위에 있습니다.'],
+      ['会議は明日です。','카이기와 아시타 데스','회의는 내일입니다.'],
+      ['午後から始まります。','고고 카라 하지마리마스','오후부터 시작합니다.'],
+      ['金曜日は休みです。','킨요-비와 야스미 데스','금요일은 휴일입니다.'],
+      ['ここで少し待ってください。','코코데 스코시 맛테 쿠다사이','여기서 잠시 기다려 주세요.'],
+      ['ご協力ありがとうございます。','고쿄-료쿠 아리가토- 고자이마스','협조해 주셔서 감사합니다.'],
+      ['お疲れさまでした。','오츠카레사마데시타','수고하셨습니다.']
+    ];
+
+    const listeningTopics = [
+      '시간 듣기','숫자 듣기','질문 파악','일정 확인','장소 찾기','집합 시간','수업 시작','요일 듣기','회의 시간','날짜 확인',
+      '학교 이동','회사 이동','공항 이동','만나는 장소','도서관 행동','방향 안내','상태 확인','출입구 안내','층수 확인','거리 확인',
+      '부정 표현','없음 표현','아직 표현','미시작 표현','이해 못함','불가 표현','지연 안내','만실 안내','예정 변경','현재 상황',
+      '물 요청','주문 표현','확인 표현','재청 표현','대기 요청','기록 요청','앉기 요청','보기 요청','듣기 요청','예약 확인',
+      '회의실 대기','담당자 부재','전화번호 확인','메일 발송','자료 위치','회의 일정','오후 시작','금요일 휴무','잠시 대기','협조 감사'
+    ];
+
+    const navLinks = Array.from(document.querySelectorAll('.quick a'));
+    const pages = Array.from(document.querySelectorAll('.page'));
+
+    function activatePage(pageName) {
+      pages.forEach(page => page.classList.toggle('active', page.id === 'page-' + pageName));
+      navLinks.forEach(link => link.classList.toggle('active', link.dataset.page === pageName));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        const pageName = link.dataset.page;
+        history.replaceState(null, '', '#' + pageName);
+        activatePage(pageName);
+      });
+    });
+
+    function resolvePage() {
+      const hash = location.hash.replace('#', '');
+      return hash || 'home';
+    }
+
+    window.addEventListener('hashchange', () => activatePage(resolvePage()));
+
+    function renderKana(targetId, rows) {
+      const target = document.getElementById(targetId);
+      target.innerHTML = rows.map(item => `
+        <div class="kana-card">
+          <strong>${item[0]}</strong>
+          <span>${item[1]}<br>${item[2]}</span>
+        </div>
+      `).join('');
+    }
+
+    function renderDaily() {
+      const target = document.getElementById('dailyGrid');
+      target.innerHTML = dailySentences.map((item, index) => `
+        <div class="card ${index % 5 === 0 ? 'blue' : index % 5 === 1 ? 'mint' : index % 5 === 2 ? 'yellow' : index % 5 === 3 ? 'peach' : 'lav'}">
+          <h3>${index + 1}. ${item[0]}</h3>
+          <p>한글식 발음: ${item[1]}<br>뜻: ${item[2]}</p>
+        </div>
+      `).join('');
+    }
+
+    function renderListening() {
+      const target = document.getElementById('listeningGrid');
+      target.innerHTML = listeningTopics.map((topic, index) => {
+        const no = String(index + 1).padStart(2, '0');
+        const tone = index % 5 === 0 ? 'blue' : index % 5 === 1 ? 'mint' : index % 5 === 2 ? 'yellow' : index % 5 === 3 ? 'peach' : 'lav';
+        return `
+          <div class="card ${tone}">
+            <h3>문장 ${no}</h3>
+            <p>듣기 포인트: ${topic}<br>공부 방법: 먼저 한 번 듣고, 두 번째는 시간/장소/부정만 잡아보세요.</p>
+            <div class="audio-box">
+              <audio controls preload="none">
+                <source src="audio50/${no}.wav" type="audio/wav">
+              </audio>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    renderKana('hiraganaGrid', kanaRows.hiragana);
+    renderKana('katakanaGrid', kanaRows.katakana);
+    renderDaily();
+    renderListening();
+    activatePage(resolvePage());
+  </script>
 </body>
 </html>
